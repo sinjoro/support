@@ -8,6 +8,7 @@ var authTypes = ['github', 'twitter', 'facebook', 'google'];
 var UserSchema = new Schema({
   name: String,
   email: { type: String, lowercase: true },
+  createdDate: Date,
   role: {
     type: String,
     default: 'user'
@@ -100,7 +101,7 @@ var validatePresenceOf = function(value) {
 UserSchema
   .pre('save', function(next) {
     if (!this.isNew) return next();
-
+    this.createdDate = new Date();
     if (!validatePresenceOf(this.hashedPassword) && authTypes.indexOf(this.provider) === -1)
       next(new Error('Invalid password'));
     else

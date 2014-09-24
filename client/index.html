@@ -55,9 +55,16 @@
       <script src="bower_components/lodash/dist/lodash.compat.js"></script>
       <script src="bower_components/angular-socket-io/socket.js"></script>
       <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+      <script src="bower_components/jquery-autosize/jquery.autosize.js"></script>
+      <script src="bower_components/angular-elastic/elastic.js"></script>
+      <script src="bower_components/moment/moment.js"></script>
+      <script src="bower_components/angular-moment/angular-moment.js"></script>
+      <script src="bower_components/angularjs-scroll-glue/src/scrollglue.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
+    <!--somehow grunt remove that file during compilation process-->
+    <script src="bower_components/moment/locale/ru.js"></script>
 
         <!-- build:js({.tmp,client}) app/app.js -->
         <script src="app/app.js"></script>
@@ -67,6 +74,7 @@
           <script src="app/account/settings/settings.js"></script>
           <script src="app/account/signup/signup.js"></script>
           <script src="app/admin/admin.js"></script>
+          <script src="app/common.js"></script>
           <script src="app/main/main.js"></script>
           <script src="components/auth/auth.js"></script>
           <script src="components/auth/user.js"></script>

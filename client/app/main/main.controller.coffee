@@ -1,22 +1,21 @@
 'use strict'
 
 angular.module 'supportApp'
-.controller 'MainCtrl', ($scope, $http, socket) ->
-  $scope.awesomeThings = []
+.controller 'MainCtrl', ($scope, $http, socket, Auth) ->
+  $scope.messages = []
+  $scope.currentUser = Auth.getCurrentUser()
+  dialog = 'support:' + $scope.currentUser._id;
+  $http.get('/api/messages/' + dialog).success (messages) ->
+    $scope.messages = messages
+    socket.syncUpdates 'message', $scope.messages
 
-  $http.get('/api/things').success (awesomeThings) ->
-    $scope.awesomeThings = awesomeThings
-    socket.syncUpdates 'thing', $scope.awesomeThings
+  $scope.addMessage = ->
+    return if $scope.newMessage is ''
+    $http.post '/api/messages/support',
+      text: $scope.newMessage
 
-  $scope.addThing = ->
-    return if $scope.newThing is ''
-    $http.post '/api/things',
-      name: $scope.newThing
+    $scope.newMessage = ''
 
-    $scope.newThing = ''
-
-  $scope.deleteThing = (thing) ->
-    $http.delete '/api/things/' + thing._id
 
   $scope.$on '$destroy', ->
-    socket.unsyncUpdates 'thing'
+    socket.unsyncUpdates 'message'

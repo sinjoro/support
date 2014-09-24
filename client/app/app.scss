@@ -4,6 +4,7 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 @import 'bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
 @import 'font-awesome/scss/font-awesome';
 
+$gray: #bfbfbf;
 /**
  * App-wide Styles
  */
@@ -19,6 +20,7 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
 // injector
 @import 'account/login/login.scss';
 @import 'admin/admin.scss';
+@import 'common.scss';
 @import 'main/main.scss';
 @import 'modal/modal.scss';
 // endinjector

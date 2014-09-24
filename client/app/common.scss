@@ -1,0 +1,12 @@
+
+textarea{
+  -webkit-transition: height 0.2s;
+  -moz-transition: height 0.2s;
+  transition: height 0.2s;
+}
+textarea.form-control{
+  transition:
+    border-color ease-in-out 0.15s,
+    box-shadow ease-in-out 0.15s,
+    height 0.2s
+}

@@ -6,7 +6,13 @@ angular.module 'supportApp', [
   'ngSanitize',
   'btford.socket-io',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'monospaced.elastic',
+  'angularMoment',
+  'luegg.directives'
+]
+.config [ "msdElasticConfig", (config) ->
+  config.append = "\n"
 ]
 .config ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) ->
   $urlRouterProvider
@@ -30,9 +36,12 @@ angular.module 'supportApp', [
       $cookieStore.remove 'token'
 
     $q.reject response
-
-.run ($rootScope, $location, Auth) ->
+.filter 'reverse', () ->
+  (items) ->
+    items.slice().reverse();
+.run ($rootScope, $location, Auth, amMoment) ->
+  amMoment.changeLocale('ru')
   # Redirect to login if route requires auth and you're not logged in
   $rootScope.$on '$stateChangeStart', (event, next) ->
     Auth.isLoggedInAsync (loggedIn) ->
-      $location.path "/login" if next.authenticate and not loggedIn
+      $location.path "/login" if not loggedIn

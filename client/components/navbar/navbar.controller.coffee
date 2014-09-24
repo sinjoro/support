@@ -3,7 +3,7 @@
 angular.module 'supportApp'
 .controller 'NavbarCtrl', ($scope, $location, Auth) ->
   $scope.menu = [
-    title: 'Home'
+    title: 'Главная'
     link: '/'
   ]
   $scope.isCollapsed = true
